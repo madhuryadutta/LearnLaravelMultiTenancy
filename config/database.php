@@ -68,6 +68,10 @@ return [
             'database' => null, // Will be set dynamically per tenant
             'username' => env('TENANT_DB_USERNAME', 'root'),
             'password' => env('TENANT_DB_PASSWORD', ''),
+            'port' => env('TENANT_DB_PORT', '3306'),
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
         'pgsql' => [
             'driver' => 'pgsql',
